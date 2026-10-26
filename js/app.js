@@ -4,9 +4,14 @@
 
 // ----- CONFIGURAÇÃO (mude à vontade) -----
 const CONFIG = {
-  tempoPorPergunta: 20,        // segundos
-  pontosPorAcerto: 10,         // pontos
-  quantidadePorPartida: 10     // perguntas sorteadas por partida
+  tempoPorPergunta: 20,
+  pontosPorAcerto: 10,
+  quantidadePorPartida: 10,
+  arquivosDePerguntas: [
+    'perguntas-gerais.json',
+    'perguntas-matematica.json',
+    'perguntas-serie.json'
+  ]
 };
 
 // ----- ESTADO DO JOGO -----
