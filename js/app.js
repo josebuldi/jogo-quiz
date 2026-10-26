@@ -4,8 +4,9 @@
 
 // ----- CONFIGURAÇÃO (mude à vontade) -----
 const CONFIG = {
-  tempoPorPergunta: 20,   // segundos
-  pontosPorAcerto: 10     // pontos
+  tempoPorPergunta: 20,        // segundos
+  pontosPorAcerto: 10,         // pontos
+  quantidadePorPartida: 10     // perguntas sorteadas por partida
 };
 
 // ----- ESTADO DO JOGO -----
@@ -70,7 +71,7 @@ async function carregarPerguntas() {
 async function comecarJogo() {
   try {
     const dados = await carregarPerguntas();
-    perguntas = embaralhar(dados);
+    perguntas = embaralhar(dados).slice(0, CONFIG.quantidadePorPartida);
     indiceAtual = 0;
     pontos = 0;
     mostrarTela(elementos.telaPergunta);

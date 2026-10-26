@@ -1,27 +1,183 @@
 [
   {
-    "pergunta": "Qual é o maior planeta do Sistema Solar?",
-    "alternativas": ["Júpiter", "Terra", "Marte", "Vênus"],
+    "pergunta": "Quanto é 12 × 4?",
+    "alternativas": ["48", "44", "46", "52"],
     "correta": 0,
-    "categoria": "Ciências"
+    "categoria": "Matemática"
   },
   {
-    "pergunta": "Quantos lados tem um hexágono?",
-    "alternativas": ["5", "6", "7", "8"],
+    "pergunta": "Quantos lados tem um pentágono?",
+    "alternativas": ["4", "5", "6", "7"],
     "correta": 1,
     "categoria": "Matemática"
   },
   {
-    "pergunta": "Qual destes animais corre mais rápido em terra?",
-    "alternativas": ["Leão", "Cavalo", "Guepardo", "Antílope"],
+    "pergunta": "Qual destas formas tem os 4 lados iguais?",
+    "alternativas": ["Triângulo", "Retângulo", "Quadrado", "Círculo"],
     "correta": 2,
-    "categoria": "Animais"
+    "categoria": "Matemática"
   },
   {
-    "pergunta": "Em qual continente o Brasil está localizado?",
-    "alternativas": ["África", "Europa", "América do Sul", "Oceania"],
+    "pergunta": "Quantos centímetros existem em 1 metro?",
+    "alternativas": ["10", "50", "100", "1000"],
     "correta": 2,
-    "categoria": "Geografia"
+    "categoria": "Matemática"
+  },
+  {
+    "pergunta": "Quanto é 56 ÷ 7?",
+    "alternativas": ["7", "8", "9", "6"],
+    "correta": 1,
+    "categoria": "Matemática"
+  },
+  {
+    "pergunta": "Quantos minutos tem uma hora e meia?",
+    "alternativas": ["60", "80", "90", "120"],
+    "correta": 2,
+    "categoria": "Matemática"
+  },
+  {
+    "pergunta": "Uma pizza foi cortada em 8 pedaços e você comeu 2. Qual fração você comeu?",
+    "alternativas": ["2/6", "3/8", "2/8", "8/2"],
+    "correta": 2,
+    "categoria": "Matemática"
+  },
+  {
+    "pergunta": "Se você tem R$ 2,50 e ganha mais R$ 1,50, quanto tem?",
+    "alternativas": ["R$ 3,00", "R$ 4,00", "R$ 3,50", "R$ 4,50"],
+    "correta": 1,
+    "categoria": "Matemática"
+  },
+  {
+    "pergunta": "Quantas sílabas tem a palavra 'borboleta'?",
+    "alternativas": ["3", "4", "5", "6"],
+    "correta": 1,
+    "categoria": "Português"
+  },
+  {
+    "pergunta": "Qual palavra está escrita corretamente?",
+    "alternativas": ["eskola", "escola", "êscula", "escohla"],
+    "correta": 1,
+    "categoria": "Português"
+  },
+  {
+    "pergunta": "Qual é o contrário (antônimo) de 'alto'?",
+    "alternativas": ["grande", "longo", "baixo", "forte"],
+    "correta": 2,
+    "categoria": "Português"
+  },
+  {
+    "pergunta": "Qual é um sinônimo de 'bonito'?",
+    "alternativas": ["feio", "belo", "pequeno", "novo"],
+    "correta": 1,
+    "categoria": "Português"
+  },
+  {
+    "pergunta": "Na frase 'A menina correu no parque', qual palavra é o verbo?",
+    "alternativas": ["menina", "correu", "parque", "no"],
+    "correta": 1,
+    "categoria": "Português"
+  },
+  {
+    "pergunta": "Qual destas palavras é um substantivo?",
+    "alternativas": ["correr", "azul", "caderno", "rapidamente"],
+    "correta": 2,
+    "categoria": "Português"
+  },
+  {
+    "pergunta": "Qual é o plural de 'pão'?",
+    "alternativas": ["pãos", "pães", "pões", "pãoes"],
+    "correta": 1,
+    "categoria": "Português"
+  },
+  {
+    "pergunta": "Qual palavra está escrita com o acento correto?",
+    "alternativas": ["voce", "vocé", "voçê", "você"],
+    "correta": 3,
+    "categoria": "Português"
+  },
+  {
+    "pergunta": "A água pode ser encontrada em quantos estados na natureza?",
+    "alternativas": ["2", "3", "4", "5"],
+    "correta": 1,
+    "categoria": "Ciências"
+  },
+  {
+    "pergunta": "Qual é o maior órgão do corpo humano?",
+    "alternativas": ["o coração", "o fígado", "a pele", "o cérebro"],
+    "correta": 2,
+    "categoria": "Ciências"
+  },
+  {
+    "pergunta": "Qual destes animais é um mamífero?",
+    "alternativas": ["o tubarão", "a baleia", "o pinguim", "a tartaruga"],
+    "correta": 1,
+    "categoria": "Ciências"
+  },
+  {
+    "pergunta": "Qual parte da planta absorve a água do solo?",
+    "alternativas": ["a folha", "a flor", "o caule", "a raiz"],
+    "correta": 3,
+    "categoria": "Ciências"
+  },
+  {
+    "pergunta": "Qual planeta é conhecido como o 'planeta vermelho'?",
+    "alternativas": ["Vênus", "Júpiter", "Marte", "Saturno"],
+    "correta": 2,
+    "categoria": "Ciências"
+  },
+  {
+    "pergunta": "Do que as plantas precisam para fazer a fotossíntese?",
+    "alternativas": ["escuridão", "luz do sol", "neve", "pedras"],
+    "correta": 1,
+    "categoria": "Ciências"
+  },
+  {
+    "pergunta": "Qual destes animais é um inseto?",
+    "alternativas": ["a aranha", "a formiga", "o escorpião", "o caranguejo"],
+    "correta": 1,
+    "categoria": "Ciências"
+  },
+  {
+    "pergunta": "Como se chama a passagem da água do estado líquido para o vapor?",
+    "alternativas": ["evaporação", "condensação", "congelamento", "fusão"],
+    "correta": 0,
+    "categoria": "Ciências"
+  },
+  {
+    "pergunta": "Em que ano os portugueses chegaram ao Brasil?",
+    "alternativas": ["1500", "1522", "1600", "1492"],
+    "correta": 0,
+    "categoria": "História"
+  },
+  {
+    "pergunta": "Quem declarou a independência do Brasil?",
+    "alternativas": ["Dom Pedro I", "Dom Pedro II", "Tiradentes", "Dom João VI"],
+    "correta": 0,
+    "categoria": "História"
+  },
+  {
+    "pergunta": "Em qual data comemoramos a Independência do Brasil?",
+    "alternativas": ["15 de novembro", "7 de setembro", "21 de abril", "12 de outubro"],
+    "correta": 1,
+    "categoria": "História"
+  },
+  {
+    "pergunta": "Quem eram os primeiros habitantes do Brasil?",
+    "alternativas": ["os portugueses", "os africanos", "os povos indígenas", "os franceses"],
+    "correta": 2,
+    "categoria": "História"
+  },
+  {
+    "pergunta": "Qual destas palavras veio da língua indígena (tupi)?",
+    "alternativas": ["pão", "sofá", "celular", "abacaxi"],
+    "correta": 3,
+    "categoria": "História"
+  },
+  {
+    "pergunta": "O que comemoramos em 15 de novembro?",
+    "alternativas": ["a Independência", "a Proclamação da República", "o Descobrimento", "o Natal"],
+    "correta": 1,
+    "categoria": "História"
   },
   {
     "pergunta": "Qual é a capital do Brasil?",
@@ -30,33 +186,57 @@
     "categoria": "Geografia"
   },
   {
-    "pergunta": "Qual gás as plantas liberam para o ar na fotossíntese?",
-    "alternativas": ["Gás carbônico", "Oxigênio", "Nitrogênio", "Hidrogênio"],
-    "correta": 1,
-    "categoria": "Ciências"
+    "pergunta": "Quantos estados existem no Brasil (sem contar o Distrito Federal)?",
+    "alternativas": ["20", "24", "26", "30"],
+    "correta": 2,
+    "categoria": "Geografia"
   },
   {
-    "pergunta": "Quanto é 7 × 8?",
-    "alternativas": ["54", "56", "63", "48"],
-    "correta": 1,
-    "categoria": "Matemática"
+    "pergunta": "Qual é o maior estado do Brasil?",
+    "alternativas": ["Bahia", "Minas Gerais", "São Paulo", "Amazonas"],
+    "correta": 3,
+    "categoria": "Geografia"
   },
   {
-    "pergunta": "Qual é o menor país do mundo?",
-    "alternativas": ["Mônaco", "Vaticano", "Malta", "Liechtenstein"],
+    "pergunta": "Qual oceano banha a costa do Brasil?",
+    "alternativas": ["Pacífico", "Atlântico", "Índico", "Ártico"],
     "correta": 1,
     "categoria": "Geografia"
   },
   {
-    "pergunta": "Como se chama o filhote da vaca?",
-    "alternativas": ["Potro", "Bezerro", "Cordeiro", "Leitão"],
-    "correta": 1,
-    "categoria": "Animais"
+    "pergunta": "Em qual continente o Brasil está localizado?",
+    "alternativas": ["África", "Europa", "América do Sul", "Oceania"],
+    "correta": 2,
+    "categoria": "Geografia"
   },
   {
-    "pergunta": "Qual órgão do corpo humano bombeia o sangue?",
-    "alternativas": ["Pulmão", "Fígado", "Coração", "Estômago"],
+    "pergunta": "Em qual região do Brasil fica o estado de São Paulo?",
+    "alternativas": ["Norte", "Nordeste", "Sul", "Sudeste"],
+    "correta": 3,
+    "categoria": "Geografia"
+  },
+  {
+    "pergunta": "Como se diz 'gato' em inglês?",
+    "alternativas": ["dog", "cat", "bird", "fish"],
+    "correta": 1,
+    "categoria": "Inglês"
+  },
+  {
+    "pergunta": "A cor 'yellow' em português é...",
+    "alternativas": ["vermelho", "azul", "amarelo", "verde"],
     "correta": 2,
-    "categoria": "Corpo humano"
+    "categoria": "Inglês"
+  },
+  {
+    "pergunta": "Como se diz 'bom dia' em inglês?",
+    "alternativas": ["Good night", "Good morning", "Good afternoon", "Good bye"],
+    "correta": 1,
+    "categoria": "Inglês"
+  },
+  {
+    "pergunta": "O que significa a palavra 'dog'?",
+    "alternativas": ["gato", "pássaro", "peixe", "cachorro"],
+    "correta": 3,
+    "categoria": "Inglês"
   }
 ]
