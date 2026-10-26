@@ -1,0 +1,62 @@
+[
+  {
+    "pergunta": "Qual é o maior planeta do Sistema Solar?",
+    "alternativas": ["Júpiter", "Terra", "Marte", "Vênus"],
+    "correta": 0,
+    "categoria": "Ciências"
+  },
+  {
+    "pergunta": "Quantos lados tem um hexágono?",
+    "alternativas": ["5", "6", "7", "8"],
+    "correta": 1,
+    "categoria": "Matemática"
+  },
+  {
+    "pergunta": "Qual destes animais corre mais rápido em terra?",
+    "alternativas": ["Leão", "Cavalo", "Guepardo", "Antílope"],
+    "correta": 2,
+    "categoria": "Animais"
+  },
+  {
+    "pergunta": "Em qual continente o Brasil está localizado?",
+    "alternativas": ["África", "Europa", "América do Sul", "Oceania"],
+    "correta": 2,
+    "categoria": "Geografia"
+  },
+  {
+    "pergunta": "Qual é a capital do Brasil?",
+    "alternativas": ["Rio de Janeiro", "São Paulo", "Brasília", "Salvador"],
+    "correta": 2,
+    "categoria": "Geografia"
+  },
+  {
+    "pergunta": "Qual gás as plantas liberam para o ar na fotossíntese?",
+    "alternativas": ["Gás carbônico", "Oxigênio", "Nitrogênio", "Hidrogênio"],
+    "correta": 1,
+    "categoria": "Ciências"
+  },
+  {
+    "pergunta": "Quanto é 7 × 8?",
+    "alternativas": ["54", "56", "63", "48"],
+    "correta": 1,
+    "categoria": "Matemática"
+  },
+  {
+    "pergunta": "Qual é o menor país do mundo?",
+    "alternativas": ["Mônaco", "Vaticano", "Malta", "Liechtenstein"],
+    "correta": 1,
+    "categoria": "Geografia"
+  },
+  {
+    "pergunta": "Como se chama o filhote da vaca?",
+    "alternativas": ["Potro", "Bezerro", "Cordeiro", "Leitão"],
+    "correta": 1,
+    "categoria": "Animais"
+  },
+  {
+    "pergunta": "Qual órgão do corpo humano bombeia o sangue?",
+    "alternativas": ["Pulmão", "Fígado", "Coração", "Estômago"],
+    "correta": 2,
+    "categoria": "Corpo humano"
+  }
+]

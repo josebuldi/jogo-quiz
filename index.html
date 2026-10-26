@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Divertido — Perguntas e Respostas</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+
+    <!-- TELA 1: INÍCIO -->
+    <section id="tela-inicio" class="tela">
+      <h1 class="titulo">🧠 Quiz Divertido</h1>
+      <p class="subtitulo">Teste seus conhecimentos!<br>Perguntas para quem tem de 8 a 12 anos.</p>
+      <button id="botao-comecar" class="botao botao-grande">Começar a jogar ▶</button>
+      <p id="recorde-inicio" class="recorde">🏆 Recorde: 0 pontos</p>
+    </section>
+
+    <!-- TELA 2: PERGUNTA -->
+    <section id="tela-pergunta" class="tela escondida">
+      <div class="barra-topo">
+        <span id="info-pergunta" class="info">Pergunta 1 de 10</span>
+        <span id="info-pontos" class="info">⭐ 0 pontos</span>
+      </div>
+      <div class="barra-tempo-fundo">
+        <div id="barra-tempo" class="barra-tempo"></div>
+      </div>
+      <span id="chip-categoria" class="chip">Geral</span>
+      <h2 id="texto-pergunta" class="pergunta">A pergunta aparece aqui</h2>
+      <div id="alternativas" class="alternativas"></div>
+      <p id="feedback" class="feedback"></p>
+    </section>
+
+    <!-- TELA 3: RESULTADO -->
+    <section id="tela-resultado" class="tela escondida">
+      <h1 class="titulo">🎉 Fim de jogo!</h1>
+      <p id="mensagem-final" class="subtitulo">Você foi muito bem!</p>
+      <p id="pontuacao-final" class="pontuacao-final">0 pontos</p>
+      <p id="recorde-final" class="recorde">🏆 Recorde: 0 pontos</p>
+      <button id="botao-jogar-novamente" class="botao botao-grande">Jogar de novo 🔁</button>
+    </section>
+
+  </main>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
