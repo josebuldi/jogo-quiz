@@ -9,15 +9,22 @@
 <body>
   <main class="container">
 
-    <!-- TELA 1: INÍCIO -->
+    <!-- TELA 1: ESCOLHER MATÉRIA -->
     <section id="tela-inicio" class="tela">
       <h1 class="titulo">🧠 Quiz Divertido</h1>
-      <p class="subtitulo">Teste seus conhecimentos!<br>Perguntas para o Picucho José Gabriel.</p>
-      <button id="botao-comecar" class="botao botao-grande">Começar a jogar ▶</button>
-      <p id="recorde-inicio" class="recorde">🏆 Recorde: 0 pontos</p>
+      <p class="subtitulo">O que você quer estudar hoje?</p>
+      <div id="menu-materias" class="grade"></div>
     </section>
 
-    <!-- TELA 2: PERGUNTA -->
+    <!-- TELA 2: TABUADA — ESCOLHER NÚMERO -->
+    <section id="tela-tabuada" class="tela escondida">
+      <h1 class="titulo">✖️ Tabuada</h1>
+      <p class="subtitulo">Tabuada de qual número?</p>
+      <div id="grade-numeros" class="grade grade-numeros"></div>
+      <button id="botao-voltar-inicio" class="botao-voltar">◀ Trocar matéria</button>
+    </section>
+
+    <!-- TELA 3: PERGUNTA -->
     <section id="tela-pergunta" class="tela escondida">
       <div class="barra-topo">
         <span id="info-pergunta" class="info">Pergunta 1 de 10</span>
@@ -32,13 +39,14 @@
       <p id="feedback" class="feedback"></p>
     </section>
 
-    <!-- TELA 3: RESULTADO -->
+    <!-- TELA 4: RESULTADO -->
     <section id="tela-resultado" class="tela escondida">
       <h1 class="titulo">🎉 Fim de jogo!</h1>
       <p id="mensagem-final" class="subtitulo">Você foi muito bem!</p>
       <p id="pontuacao-final" class="pontuacao-final">0 pontos</p>
       <p id="recorde-final" class="recorde">🏆 Recorde: 0 pontos</p>
       <button id="botao-jogar-novamente" class="botao botao-grande">Jogar de novo 🔁</button>
+      <button id="botao-trocar-materia" class="botao-voltar">◀ Trocar matéria</button>
     </section>
 
   </main>

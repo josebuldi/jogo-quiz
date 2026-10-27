@@ -1,21 +1,18 @@
 // ============================================================
-// storage.js — salva o recorde no próprio navegador
+// storage.js — salva o recorde de cada matéria no navegador
 // ============================================================
 
 const Storage = {
-  CHAVE: 'quiz-recorde',
+  CHAVE_BASE: 'quiz-recorde-',
 
-  // Lê o recorde salvo. Se não existir, devolve 0.
-  carregarRecorde() {
-    const valor = localStorage.getItem(this.CHAVE);
+  carregarRecorde(chave) {
+    const valor = localStorage.getItem(this.CHAVE_BASE + chave);
     return valor === null ? 0 : Number(valor);
   },
 
-  // Salva somente se for maior que o atual.
-  // Devolve true quando um novo recorde é atingido.
-  salvarRecorde(pontos) {
-    if (pontos > this.carregarRecorde()) {
-      localStorage.setItem(this.CHAVE, String(pontos));
+  salvarRecorde(chave, pontos) {
+    if (pontos > this.carregarRecorde(chave)) {
+      localStorage.setItem(this.CHAVE_BASE + chave, String(pontos));
       return true;
     }
     return false;

@@ -1,34 +1,43 @@
 // ============================================================
-// app.js — lógica do quiz
+// app.js — quiz com menu de matérias
 // ============================================================
 
-// ----- CONFIGURAÇÃO (mude à vontade) -----
 const CONFIG = {
-  tempoPorPergunta: 20,
-  pontosPorAcerto: 10,
-  quantidadePorPartida: 10,
-  arquivosDePerguntas: [
-    'perguntas-gerais.json',
-    'perguntas-matematica.json',
-    'perguntas-serie.json'
-  ]
+  tempoPorPergunta: 30,       // segundos
+  pontosPorAcerto: 10,        // pontos
+  quantidadePorPartida: 10    // perguntas por partida
 };
 
-// ----- ESTADO DO JOGO -----
-let perguntas = [];           // perguntas embaralhadas
-let indiceAtual = 0;          // índice da pergunta atual
-let pontos = 0;               // pontuação da partida
-let timer = null;             // controle do cronômetro
+// Para adicionar uma matéria nova:
+// 1) crie o arquivo em data/ (ex.: esportes.json)
+// 2) adicione uma linha aqui embaixo
+const MATERIAS = [
+  { nome: 'Tabuada',   icone: '✖️', tipo: 'gerada' },
+  { nome: 'Ciências',  icone: '🔬', arquivo: 'ciencias.json' },
+  { nome: 'Português', icone: '📚', arquivo: 'portugues.json' },
+  { nome: 'História',  icone: '🏛️', arquivo: 'historia.json' },
+  { nome: 'Geografia', icone: '🌍', arquivo: 'geografia.json' },
+  { nome: 'Inglês',    icone: '🔤', arquivo: 'ingles.json' }
+];
+
+let perguntas = [];
+let indiceAtual = 0;
+let pontos = 0;
+let timer = null;
 let tempoRestante = 0;
 let respostaCorretaTexto = '';
+let materiaAtual = null;
 
-// ----- ELEMENTOS DA TELA -----
 const elementos = {
   telaInicio: document.getElementById('tela-inicio'),
+  telaTabuada: document.getElementById('tela-tabuada'),
   telaPergunta: document.getElementById('tela-pergunta'),
   telaResultado: document.getElementById('tela-resultado'),
-  botaoComecar: document.getElementById('botao-comecar'),
+  menuMaterias: document.getElementById('menu-materias'),
+  gradeNumeros: document.getElementById('grade-numeros'),
+  botaoVoltarInicio: document.getElementById('botao-voltar-inicio'),
   botaoJogarNovamente: document.getElementById('botao-jogar-novamente'),
+  botaoTrocarMateria: document.getElementById('botao-trocar-materia'),
   infoPergunta: document.getElementById('info-pergunta'),
   infoPontos: document.getElementById('info-pontos'),
   barraTempo: document.getElementById('barra-tempo'),
@@ -36,24 +45,23 @@ const elementos = {
   textoPergunta: document.getElementById('texto-pergunta'),
   listaAlternativas: document.getElementById('alternativas'),
   feedback: document.getElementById('feedback'),
-  recordeInicio: document.getElementById('recorde-inicio'),
   pontuacaoFinal: document.getElementById('pontuacao-final'),
   recordeFinal: document.getElementById('recorde-final'),
   mensagemFinal: document.getElementById('mensagem-final')
 };
 
-// ----- FUNÇÕES AUXILIARES -----
 function mostrarTela(tela) {
-  [elementos.telaInicio, elementos.telaPergunta, elementos.telaResultado]
+  [elementos.telaInicio, elementos.telaTabuada, elementos.telaPergunta, elementos.telaResultado]
     .forEach(t => t.classList.add('escondida'));
   tela.classList.remove('escondida');
 }
 
-function atualizarRecordeNaTela() {
-  elementos.recordeInicio.textContent = `🏆 Recorde: ${Storage.carregarRecorde()} pontos`;
+function voltarAoInicio() {
+  montarMenuMaterias();
+  montarGradeNumeros();
+  mostrarTela(elementos.telaInicio);
 }
 
-// Embaralha uma cópia do array
 function embaralhar(lista) {
   const copia = [...lista];
   for (let i = copia.length - 1; i > 0; i--) {
@@ -63,27 +71,91 @@ function embaralhar(lista) {
   return copia;
 }
 
-// ----- CARREGAR PERGUNTAS -----
-async function carregarPerguntas() {
-  const resposta = await fetch('data/perguntas.json');
-  if (!resposta.ok) {
-    throw new Error('Não foi possível carregar as perguntas.');
+// ----- MENUS -----
+function montarMenuMaterias() {
+  elementos.menuMaterias.innerHTML = '';
+  MATERIAS.forEach(materia => {
+    const botao = document.createElement('button');
+    botao.className = 'botao-materia';
+    botao.innerHTML =
+      `${materia.icone} ${materia.nome}` +
+      `<br><small class="recorde-mini">🏆 ${Storage.carregarRecorde(materia.nome)} pts</small>`;
+    botao.addEventListener('click', () => selecionarMateria(materia));
+    elementos.menuMaterias.appendChild(botao);
+  });
+}
+
+function montarGradeNumeros() {
+  elementos.gradeNumeros.innerHTML = '';
+  for (let numero = 2; numero <= 10; numero++) {
+    const chave = `Tabuada do ${numero}`;
+    const botao = document.createElement('button');
+    botao.className = 'botao-materia botao-numero';
+    botao.innerHTML = `${numero}<br><small class="recorde-mini">🏆 ${Storage.carregarRecorde(chave)} pts</small>`;
+    botao.addEventListener('click', () => jogarTabuada(numero));
+    elementos.gradeNumeros.appendChild(botao);
   }
+}
+
+// ----- TABUADA (perguntas geradas na hora) -----
+function gerarPerguntasTabuada(numero) {
+  const lista = [];
+  for (let i = 1; i <= 10; i++) {
+    const resposta = numero * i;
+    const candidatas = [
+      resposta + numero, resposta - numero,
+      resposta + 1, resposta - 1,
+      resposta + 10, resposta - 10
+    ];
+    const erros = [...new Set(candidatas)]
+      .filter(valor => valor > 0 && valor !== resposta)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 3);
+    const alternativas = embaralhar([resposta, ...erros]);
+    lista.push({
+      pergunta: `Quanto é ${numero} × ${i}?`,
+      alternativas: alternativas.map(String),
+      correta: alternativas.indexOf(resposta),
+      categoria: `Tabuada do ${numero}`
+    });
+  }
+  return lista;
+}
+
+function jogarTabuada(numero) {
+  materiaAtual = { nome: `Tabuada do ${numero}`, icone: '✖️', tipo: 'gerada', numero: numero };
+  iniciarPartida(gerarPerguntasTabuada(numero));
+}
+
+// ----- CARREGAR ARQUIVO -----
+async function carregarArquivo(caminho) {
+  const resposta = await fetch(`${caminho}?v=${Date.now()}`);
+  if (!resposta.ok) throw new Error('Falha ao carregar ' + caminho);
   return resposta.json();
 }
 
-// ----- FLUXO DO JOGO -----
-async function comecarJogo() {
-  try {
-    const dados = await carregarPerguntas();
-    perguntas = embaralhar(dados).slice(0, CONFIG.quantidadePorPartida);
-    indiceAtual = 0;
-    pontos = 0;
-    mostrarTela(elementos.telaPergunta);
-    mostrarPergunta();
-  } catch (erro) {
-    alert('Não consegui carregar as perguntas. Abra o jogo pelo link do GitHub Pages ou pelo Live Server (não pelo duplo clique no arquivo).');
+// ----- FLUXO -----
+async function selecionarMateria(materia) {
+  materiaAtual = materia;
+  if (materia.tipo === 'gerada') {
+    mostrarTela(elementos.telaTabuada);
+    return;
   }
+  try {
+    const dados = await carregarArquivo(`data/${materia.arquivo}`);
+    if (!Array.isArray(dados) || dados.length === 0) throw new Error('arquivo vazio');
+    iniciarPartida(embaralhar(dados).slice(0, CONFIG.quantidadePorPartida));
+  } catch (erro) {
+    alert(`Não consegui carregar ${materia.arquivo}. Confira se o arquivo existe em data/ e se o JSON é válido (teste em jsonlint.com).`);
+  }
+}
+
+function iniciarPartida(sorteadas) {
+  perguntas = sorteadas;
+  indiceAtual = 0;
+  pontos = 0;
+  mostrarTela(elementos.telaPergunta);
+  mostrarPergunta();
 }
 
 function mostrarPergunta() {
@@ -92,12 +164,11 @@ function mostrarPergunta() {
 
   elementos.infoPergunta.textContent = `Pergunta ${indiceAtual + 1} de ${perguntas.length}`;
   elementos.infoPontos.textContent = `⭐ ${pontos} pontos`;
-  elementos.chipCategoria.textContent = atual.categoria || 'Geral';
+  elementos.chipCategoria.textContent = atual.categoria || materiaAtual.nome;
   elementos.textoPergunta.textContent = atual.pergunta;
   elementos.feedback.textContent = '';
   elementos.feedback.className = 'feedback';
 
-  // Monta as alternativas já embaralhadas
   const alternativas = embaralhar(
     atual.alternativas.map((texto, indice) => ({
       texto: texto,
@@ -128,7 +199,7 @@ function iniciarTimer() {
     atualizarBarraTempo();
     if (tempoRestante <= 0) {
       pararTimer();
-      responder(null, false); // tempo esgotado = errou
+      responder(null, false);
     }
   }, 1000);
 }
@@ -149,7 +220,6 @@ function atualizarBarraTempo() {
 function responder(botaoClicado, acertou) {
   pararTimer();
 
-  // Desabilita todos os botões e destaca a resposta certa
   elementos.listaAlternativas.querySelectorAll('button').forEach(b => {
     b.disabled = true;
     if (b.textContent === respostaCorretaTexto) b.classList.add('correta');
@@ -166,7 +236,6 @@ function responder(botaoClicado, acertou) {
     elementos.feedback.classList.add('erro');
   }
 
-  // Próxima pergunta após 1,6 segundos
   setTimeout(() => {
     indiceAtual++;
     if (indiceAtual < perguntas.length) {
@@ -179,12 +248,12 @@ function responder(botaoClicado, acertou) {
 
 // ----- RESULTADO -----
 function finalizarJogo() {
-  const novoRecorde = Storage.salvarRecorde(pontos);
+  const novoRecorde = Storage.salvarRecorde(materiaAtual.nome, pontos);
 
   elementos.pontuacaoFinal.textContent = `${pontos} pontos`;
   elementos.recordeFinal.textContent = novoRecorde
-    ? '🏆 Novo recorde! 🎉'
-    : `🏆 Recorde: ${Storage.carregarRecorde()} pontos`;
+    ? `🏆 Novo recorde de ${materiaAtual.nome}! 🎉`
+    : `🏆 Recorde de ${materiaAtual.nome}: ${Storage.carregarRecorde(materiaAtual.nome)} pontos`;
 
   const total = perguntas.length;
   const acertos = pontos / CONFIG.pontosPorAcerto;
@@ -200,10 +269,24 @@ function finalizarJogo() {
   }
 
   mostrarTela(elementos.telaResultado);
-  atualizarRecordeNaTela();
+}
+
+async function jogarDeNovo() {
+  if (materiaAtual.tipo === 'gerada') {
+    iniciarPartida(gerarPerguntasTabuada(materiaAtual.numero));
+    return;
+  }
+  try {
+    const dados = await carregarArquivo(`data/${materiaAtual.arquivo}`);
+    iniciarPartida(embaralhar(dados).slice(0, CONFIG.quantidadePorPartida));
+  } catch (erro) {
+    alert('Não consegui recarregar as perguntas.');
+  }
 }
 
 // ----- INÍCIO -----
-elementos.botaoComecar.addEventListener('click', comecarJogo);
-elementos.botaoJogarNovamente.addEventListener('click', comecarJogo);
-atualizarRecordeNaTela();
+montarMenuMaterias();
+montarGradeNumeros();
+elementos.botaoVoltarInicio.addEventListener('click', voltarAoInicio);
+elementos.botaoTrocarMateria.addEventListener('click', voltarAoInicio);
+elementos.botaoJogarNovamente.addEventListener('click', jogarDeNovo);
