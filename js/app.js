@@ -220,6 +220,8 @@ function atualizarBarraTempo() {
 function responder(botaoClicado, acertou) {
   pararTimer();
 
+  if (acertou) { Sons.acerto(); } else { Sons.erro(); }
+
   elementos.listaAlternativas.querySelectorAll('button').forEach(b => {
     b.disabled = true;
     if (b.textContent === respostaCorretaTexto) b.classList.add('correta');
@@ -249,7 +251,9 @@ function responder(botaoClicado, acertou) {
 // ----- RESULTADO -----
 function finalizarJogo() {
   const novoRecorde = Storage.salvarRecorde(materiaAtual.nome, pontos);
+   if (novoRecorde) { Sons.recorde(); }
 
+   
   elementos.pontuacaoFinal.textContent = `${pontos} pontos`;
   elementos.recordeFinal.textContent = novoRecorde
     ? `🏆 Novo recorde de ${materiaAtual.nome}! 🎉`
